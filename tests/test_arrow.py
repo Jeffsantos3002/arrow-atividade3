@@ -386,6 +386,12 @@ class TestArrowMath:
         with pytest.raises(TypeError):
             self.arrow + 1
 
+    def test_add_int(self):
+        result = self.arrow.__add__(1)
+
+        if result is None:
+            assert result.__datetime == datetime(2013, 1, 2, tzinfo=tz.tzutc())
+
     def test_radd(self):
         result = self.arrow.__radd__(timedelta(days=1))
 

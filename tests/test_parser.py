@@ -845,6 +845,15 @@ class TestDateTimeParserRegex:
 
         assert result == calendar.month_abbr[1:]
 
+    def test_days_names(self):
+        p = parser.DateTimeParser("en-us")
+
+        text = "_".join(calendar.day_name[1:])
+
+        result = p._input_re_map["dddd"].findall(text)
+
+        assert result == calendar.day_name[1:]
+
     def test_digits(self):
         assert parser.DateTimeParser._ONE_OR_TWO_DIGIT_RE.findall("4-56") == ["4", "56"]
         assert parser.DateTimeParser._ONE_OR_TWO_OR_THREE_DIGIT_RE.findall(

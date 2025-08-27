@@ -45,6 +45,10 @@ class TestUtil:
         assert util.is_timestamp(str(timestamp_int))
         assert util.is_timestamp(str(timestamp_float))
 
+        try:
+            float(util.is_timestamp(True))
+        except (TypeError, ValueError):
+            assert False
         assert not util.is_timestamp(True)
         assert not util.is_timestamp(False)
 
